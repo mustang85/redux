@@ -1,3 +1,4 @@
+--- 1 ---
 npm init -y
 git init
 node -v
@@ -23,3 +24,34 @@ npm i --save babel-preset-es2015
 },
 
 npm i --save-dev nodemon
+
+
+
+--- 2 ---
+npm i --save react react-dom
+npm i --save webpack webpack-dev-middleware
+
+Error: You may need an appropriate loader to handle this file type.
+
+module: {
+  loaders: [
+    {
+      test: /.\js$/,
+      include: path.join(__dirname, 'client'),
+      loaders: [ 'babel' ]
+    }
+  ]
+},
+resolve: {
+  extensions: [ '', '.js' ]
+}
+
+npm i --save babel-loader
+
+Error: Module build failed: SyntaxError
+
+{
+  'presets': [ 'es2015', 'react' ]
+}
+
+npm i --save-dev babel-preset-react
