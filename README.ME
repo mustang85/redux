@@ -1,0 +1,25 @@
+npm init -y
+git init
+node -v
+
+node server/index.js - call index file
+
+npm i -save-dev babel-cli
+
+npm i --save express
+
+npm run server
+
+--- for es6 ---
+touch .babelrc
+
+npm i --save babel-preset-es2015
+
+// перезапускает сервер, если мы что-то изменили в файлах
+
+"scripts": {
+  // "server": "babel-node server/index.js",
+  "server": "nodemon --watch server --exec babel-node -- server/index.js",
+},
+
+npm i --save-dev nodemon
