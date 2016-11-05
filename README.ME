@@ -16,7 +16,7 @@ touch .babelrc
 
 npm i --save babel-preset-es2015
 
-// перезапускает сервер, если мы что-то изменили в файлах
+// restarts the server if we changed something in the files
 
 "scripts": {
   // "server": "babel-node server/index.js",
@@ -55,3 +55,13 @@ Error: Module build failed: SyntaxError
 }
 
 npm i --save-dev babel-preset-react
+
+--- 3 ---
+npm i --save-dev react-hot-loader webpack-hot-middleware
+loaders: [
+  {
+    test: /.\js$/,
+    include: path.join(__dirname, 'client'),
+    loaders: [ 'react-hot-loader', 'babel' ]
+  }
+]
