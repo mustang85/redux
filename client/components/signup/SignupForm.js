@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { browserHistory } from 'react-router';
 
 class SignupForm extends Component {
 	constructor(props) {
@@ -29,11 +30,15 @@ class SignupForm extends Component {
 		if (this.isValid()) {
 			this.setState({ errors: {}, isLoading: true });
 			userSignupRequest(this.state).then(
-				() => {})
+				() => {
+					console.log('browserHistory');
+					browserHistory.push('/');
+					this.context.router.push('/');
+				})
 				.catch(error => {
 					console.log('error.config', error.config);
-					console.log('error.response', error.response);
-					this.setState({ errors: error.response.data, isLoading: false })
+					console.log('error.response', error.config);
+					this.setState({ errors: error.config.data, isLoading: false })
 				}
 			);
 		}
@@ -124,5 +129,9 @@ class SignupForm extends Component {
 SignupForm.propTypes = {
 	userSignupRequest: PropTypes.func.isRequired
 };
+
+// SignupForm.contextTypes = {
+// 	router: PropTypes.object.isRequired
+// };
 
 export default SignupForm;
