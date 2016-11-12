@@ -31,9 +31,12 @@ class SignupForm extends Component {
 			this.setState({ errors: {}, isLoading: true });
 			userSignupRequest(this.state).then(
 				() => {
-					console.log('browserHistory');
-					browserHistory.push('/');
+					// browserHistory.push('/');
 					this.context.router.push('/');
+					this.props.addFlashMessage({
+						type: 'success',
+						text: 'trololo'
+					});
 				})
 				.catch(error => {
 					console.log('error.config', error.config);
@@ -127,11 +130,12 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-	userSignupRequest: PropTypes.func.isRequired
+	userSignupRequest: PropTypes.func.isRequired,
+	addFlashMessage: PropTypes.func.isRequired
 };
 
-// SignupForm.contextTypes = {
-// 	router: PropTypes.object.isRequired
-// };
+SignupForm.contextTypes = {
+	router: PropTypes.object.isRequired
+};
 
 export default SignupForm;
