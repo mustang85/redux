@@ -12,6 +12,7 @@ export default () => {
 					<ul className="nav navbar-nav navbar-right">
 						<li>
 							<Link to="/signup">Sign up</Link>
+							<Link to="/login">Login</Link>
 						</li>
 					</ul>
 				</div>
