@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from '../../../server/shared/validations/login';
 import { connect } from 'react-redux';
-import { login } from '../../actions/login';
+import { login } from '../../actions/authActions';
 
 
 class LoginForm extends Component {
@@ -50,7 +50,7 @@ class LoginForm extends Component {
   render() {
   	const { identifier, password, errors, isLoading } = this.state;
     return (
-      <form action="" onSubmit={this.onSubmit}>
+      <form action="" onClick={this.onSubmit}>
       	<h1>Login</h1>
 
         { errors.form && <div className="alert alert-danger">{errors.form}</div> }
