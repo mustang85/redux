@@ -1,22 +1,55 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link }	from 'react-router';
-export default () => {
-	return (
-		<nav className="navbar navbar-default">
-			<div className="container-fluid">
-				<div className="navbar-header">
-					<Link to="/" className="navbar-brand">Red Dice</Link>
-				</div>
+import { connect } from 'react-redux';
+import { logout } from '../actions/authActions';
 
-				<div className="collapse navbar-collapse">
-					<ul className="nav navbar-nav navbar-right">
-						<li>
-							<Link to="/signup">Sign up</Link>
-							<Link to="/login">Login</Link>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	);
+class NavigationBar extends Component {
+  logout(e) {
+  	e.preventDefault();
+  	this.props.logout();
+  }
+  render() {
+  	const { auth: { isAuthenticated } } = this.props;
+  	const userLinks = (
+  	  <ul className="nav navbar-nav navbar-right">
+	    <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+	  </ul>	
+  	);
+
+  	const questLinks = (
+  	  <ul className="nav navbar-nav navbar-right">
+	    <li><Link to="/signup">Sign up</Link></li>
+		<li><Link to="/login">Login</Link></li>
+	  </ul>
+  	);
+
+    return (
+	  <nav className="navbar navbar-default">
+		<div className="container-fluid">
+		  <div className="navbar-header">
+		    <Link to="/" className="navbar-brand">Red Dice</Link>
+		  </div>
+
+		  <div className="collapse navbar-collapse">
+		    { isAuthenticated ? userLinks : questLinks }
+		  </div>
+		</div>
+	  </nav>
+    );
+  }
 }
+
+NavigationBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired
+};
+
+
+
+function mapStateToProps(state) {
+  return {
+	auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, { logout })(NavigationBar);
