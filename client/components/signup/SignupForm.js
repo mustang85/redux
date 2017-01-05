@@ -43,7 +43,10 @@ class SignupForm extends Component {
 				.catch(error => {
 					console.log('error.config', error.config);
 					console.log('error.response', error.config);
-					this.setState({ errors: error.config.data, isLoading: false })
+					this.setState({ 
+            errors: error.response.data, 
+            isLoading: false 
+          })
 				}
 			);
 		}

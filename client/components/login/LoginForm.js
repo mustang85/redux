@@ -36,7 +36,7 @@ class LoginForm extends Component {
   		this.props.login(this.state).then(
   			(res) => this.context.router.push('/'),
   			(err) => this.setState({ 
-  				errors: err.data.errors, 
+  				errors: err.response.data.errors, 
   				isLoading: false 
   			})
   		)
